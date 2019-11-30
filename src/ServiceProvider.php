@@ -43,5 +43,7 @@ class ServiceProvider extends IlluminateServiceProvider
         $this->configurePaths();
 
         $this->mergeConfig();
+
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 }
