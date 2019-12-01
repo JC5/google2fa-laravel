@@ -1,7 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace PragmaRX\Google2FALaravel\Support;
 
+use Illuminate\Foundation\Application;
+
+/**
+ * Trait Auth
+ */
 trait Auth
 {
     /**
@@ -14,7 +20,7 @@ trait Auth
     /**
      * Get or make an auth instance.
      *
-     * @return \Illuminate\Foundation\Application|mixed
+     * @return Application|mixed
      */
     protected function getAuth()
     {

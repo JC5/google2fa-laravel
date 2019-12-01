@@ -8,6 +8,9 @@ use PragmaRX\Google2FALaravel\Events\OneTimePasswordRequested;
 use PragmaRX\Google2FALaravel\Events\OneTimePasswordRequested53;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
+/**
+ * Trait Response
+ */
 trait Response
 {
     /**

@@ -1,9 +1,13 @@
 <?php
+declare(strict_types=1);
 
 namespace PragmaRX\Google2FALaravel;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
+/**
+ * Class ServiceProvider
+ */
 class ServiceProvider extends IlluminateServiceProvider
 {
     /**
@@ -38,7 +42,10 @@ class ServiceProvider extends IlluminateServiceProvider
         });
     }
 
-    public function boot()
+    /**
+     *
+     */
+    public function boot(): void
     {
         $this->configurePaths();
 

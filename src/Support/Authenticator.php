@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PragmaRX\Google2FALaravel\Support;
 
 use Illuminate\Http\Request as IlluminateRequest;
@@ -10,6 +12,9 @@ use PragmaRX\Google2FALaravel\Events\LoginSucceeded;
 use PragmaRX\Google2FALaravel\Exceptions\InvalidOneTimePassword;
 use PragmaRX\Google2FALaravel\Google2FA;
 
+/**
+ * Class Authenticator
+ */
 class Authenticator extends Google2FA
 {
     use ErrorBag, Input, Response, Session;
@@ -65,6 +70,7 @@ class Authenticator extends Google2FA
      * Fire login (success or failed).
      *
      * @param $succeeded
+     *
      */
     private function fireLoginEvent($succeeded)
     {

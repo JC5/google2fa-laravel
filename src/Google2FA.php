@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PragmaRX\Google2FALaravel;
 
 use Carbon\Carbon;
@@ -17,6 +19,9 @@ use PragmaRX\Google2FALaravel\Support\Request;
 use PragmaRX\Google2FALaravel\Support\Session;
 use PragmaRX\Google2FAQRCode\Google2FA as Google2FAService;
 
+/**
+ * Class Google2FA
+ */
 class Google2FA extends Google2FAService
 {
     use Auth, Config, Request, Session;

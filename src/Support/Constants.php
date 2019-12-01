@@ -1,28 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PragmaRX\Google2FALaravel\Support;
 
+/**
+ * Class Constants
+ */
 class Constants
 {
-    const CONFIG_PACKAGE_NAME = 'google2fa';
+    public const CONFIG_PACKAGE_NAME = 'google2fa';
 
-    const SESSION_AUTH_PASSED = 'auth_passed';
+    public const SESSION_AUTH_PASSED = 'auth_passed';
 
-    const SESSION_AUTH_TIME = 'auth_time';
+    public const SESSION_AUTH_TIME = 'auth_time';
 
-    const SESSION_OTP_TIMESTAMP = 'otp_timestamp';
+    public const SESSION_OTP_TIMESTAMP = 'otp_timestamp';
 
-    const QRCODE_IMAGE_BACKEND_EPS = 'eps';
+    public const QRCODE_IMAGE_BACKEND_EPS = 'eps';
 
-    const QRCODE_IMAGE_BACKEND_SVG = 'svg';
+    public const QRCODE_IMAGE_BACKEND_SVG = 'svg';
 
-    const QRCODE_IMAGE_BACKEND_IMAGEMAGICK = 'imagemagick';
+    public const QRCODE_IMAGE_BACKEND_IMAGEMAGICK = 'imagemagick';
 
-    const OTP_EMPTY = 'empty';
+    public const OTP_EMPTY = 'empty';
 
-    const OTP_VALID = 'valid';
+    public const OTP_VALID = 'valid';
 
-    const OTP_INVALID = 'invalid';
+    public const OTP_INVALID = 'invalid';
 
-    const SESSION_TOKEN = 'google2fa_token';
+    public const SESSION_TOKEN = 'google2fa_token';
 }

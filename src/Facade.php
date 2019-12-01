@@ -1,10 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace PragmaRX\Google2FALaravel;
 
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
+/**
+ * Class Facade
+ */
 class Facade extends IlluminateFacade
 {
     /**

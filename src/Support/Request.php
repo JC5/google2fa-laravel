@@ -2,6 +2,9 @@
 
 namespace PragmaRX\Google2FALaravel\Support;
 
+/**
+ * Trait Request
+ */
 trait Request
 {
     /**

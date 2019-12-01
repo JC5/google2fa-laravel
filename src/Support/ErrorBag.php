@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PragmaRX\Google2FALaravel\Support;
 
 use Illuminate\Support\MessageBag;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
+/**
+ * Trait ErrorBag
+ */
 trait ErrorBag
 {
     /**

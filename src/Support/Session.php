@@ -1,7 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PragmaRX\Google2FALaravel\Support;
 
+/**
+ * Trait Session
+ */
 trait Session
 {
     /**
