@@ -94,5 +94,8 @@ trait Session
 
     abstract protected function config($string, $children = []);
 
+    /**
+     * @return \Illuminate\Http\Request
+     */
     abstract public function getRequest();
 }
