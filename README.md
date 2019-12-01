@@ -1,5 +1,9 @@
 # Google2FA for Laravel
 
+This is a slightly edited version of [this package](https://packagist.org/packages/pragmarx/google2fa-laravel) by [Antonio Carlos Ribeiro](https://github.com/antonioribeiro). In this version of the package, the 2FA authentication state is stored in a table + cookie, so the 2FA state can survive the end of the session. 
+
+**This package is not yet ready for production.**
+
 <p align="center">
     <a href="https://packagist.org/packages/pragmarx/google2fa-laravel"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/pragmarx/google2fa-laravel.svg?style=flat-square"></a>
     <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
