@@ -3,6 +3,7 @@
 namespace PragmaRX\Google2FALaravel\Support;
 
 use Illuminate\Http\Request as IlluminateRequest;
+use Illuminate\Support\Facades\DB;
 use PragmaRX\Google2FALaravel\Events\EmptyOneTimePasswordReceived;
 use PragmaRX\Google2FALaravel\Events\LoginFailed;
 use PragmaRX\Google2FALaravel\Events\LoginSucceeded;
@@ -109,6 +110,30 @@ class Authenticator extends Google2FA
     }
 
     /**
+     * @return bool
+     */
+    public function hasValidCookieToken(): bool
+    {
+        $storeInCookie = config('google2fa.store_in_cookie', false);
+        if (false === $storeInCookie) {
+            return false;
+        }
+        $cookieName = config('google2fa.cookie_name', 'google2fa_token');
+
+        /** @var Request $request */
+        $token = $this->getRequest()->cookies->get($cookieName);
+        $time  = date('Y-m-d H:i:s');
+
+        // check DB for token.
+        $count = DB::table('2fa_tokens')
+                   ->where('token', $token)
+                   ->where('expires_at', '>', $time)
+                   ->where('user_id', $this->getUser()->id)->count();
+
+        return 1 === $count;
+    }
+
+    /**
      * Check if it is already logged in or passable without checking for an OTP.
      *
      * @return bool
@@ -116,10 +141,10 @@ class Authenticator extends Google2FA
     protected function canPassWithoutCheckingOTP()
     {
         return
-            !$this->isEnabled() ||
-            $this->noUserIsAuthenticated() ||
-            !$this->isActivated() ||
-            $this->twoFactorAuthStillValid();
+            !$this->isEnabled()
+            || $this->noUserIsAuthenticated()
+            || !$this->isActivated()
+            || $this->twoFactorAuthStillValid();
     }
 
     /**
