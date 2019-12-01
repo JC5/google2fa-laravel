@@ -23,4 +23,6 @@ class Constants
     const OTP_VALID = 'valid';
 
     const OTP_INVALID = 'invalid';
+
+    const SESSION_TOKEN = 'google2fa_token';
 }
