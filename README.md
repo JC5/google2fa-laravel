@@ -7,14 +7,13 @@ This is a slightly edited version of [this package](https://packagist.org/packag
 I've chosen to remove most of the instructions from this readme, and I invite you to checkout the original readme file. I've done this to make sure that there won't be outdated instructions in this readme file.
 
 <p align="center">
-    <!--
-    <a href="https://packagist.org/packages/pragmarx/google2fa-laravel"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/pragmarx/google2fa-laravel.svg?style=flat-square"></a>-->
+    <a href="https://packagist.org/packages/jc5/google2fa-laravel"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/jc5/google2fa-laravel.svg?style=flat-square"></a>
     <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"></a>
     <a href="https://scrutinizer-ci.com/g/jc5/google2fa-laravel/?branch=master"><img alt="Code Quality" src="https://img.shields.io/scrutinizer/g/jc5/google2fa-laravel.svg?style=flat-square"></a>
     <a href="https://travis-ci.org/jc5/google2fa-laravel"><img alt="Build" src="https://img.shields.io/travis/jc5/google2fa-laravel.svg?style=flat-square"></a>
 </p>
 <p align="center">
-    <!--<a href="https://packagist.org/packages/pragmarx/google2fa-laravel"><img alt="Downloads" src="https://img.shields.io/packagist/dt/pragmarx/google2fa-laravel.svg?style=flat-square"></a>-->
+    <a href="https://packagist.org/packages/jc5/google2fa-laravel"><img alt="Downloads" src="https://img.shields.io/packagist/dt/jc5/google2fa-laravel.svg?style=flat-square"></a>
     <a href="https://scrutinizer-ci.com/g/jc5/google2fa-laravel/?branch=master"><img alt="Coverage" src="https://img.shields.io/scrutinizer/coverage/g/jc5/google2fa-laravel.svg?style=flat-square"></a>
     <!--<a href="https://styleci.io/repos/94630851"><img alt="StyleCI" src="https://styleci.io/repos/94630851/shield"></a>-->
     <a href="https://travis-ci.org/jc5/google2fa-laravel"><img alt="PHP" src="https://img.shields.io/badge/PHP-7.3-brightgreen.svg?style=flat-square"></a>
