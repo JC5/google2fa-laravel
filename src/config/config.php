@@ -10,7 +10,7 @@ return [
     /*
      * Lifetime in minutes.
      *
-     * In case you need your users to be asked for a new one time passwords from time to time.
+     * In case you need your users to be asked for a new one time passwords from time to time while using your app.
      */
     'lifetime' => env('OTP_LIFETIME', 0), // 0 = eternal
 
@@ -18,6 +18,22 @@ return [
      * Renew lifetime at every new request.
      */
     'keep_alive' => env('OTP_KEEP_ALIVE', true),
+
+    /*
+     * Store the 2FA result in a cookie, to extend the 2FA validity over sessions.
+     */
+    'store_in_cookie' => env('OTP_STORE_COOKIE', false),
+
+    /*
+     * If stored in a cookie, what's the lifetime of the cookie?
+     * Max value is 3 months (8035200 seconds).
+     */
+    'cookie_lifetime' => (int)env('OTP_COOKIE_LIFETIME', 8035200),
+
+    /*
+     * Name of the cookie.
+     */
+    'cookie_name' => 'google2fa_token',
 
     /*
      * Auth container binding.
