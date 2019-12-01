@@ -3,7 +3,10 @@
 namespace PragmaRX\Google2FALaravel;
 
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request as IlluminateRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use PragmaRX\Google2FALaravel\Events\LoggedOut;
 use PragmaRX\Google2FALaravel\Events\OneTimePasswordExpired;
 use PragmaRX\Google2FALaravel\Exceptions\InvalidSecretKey;
@@ -222,8 +225,9 @@ class Google2FA extends Google2FAService
     public function login()
     {
         $this->sessionPut(Constants::SESSION_AUTH_PASSED, true);
-
         $this->updateCurrentAuthTime();
+        $this->generateCookieToken();
+
     }
 
     /**
@@ -280,5 +284,44 @@ class Google2FA extends Google2FAService
                 $one_time_password
             )
         );
+    }
+
+    /**
+     * Generate token, store in session.
+     */
+    private function generateCookieToken(): void
+    {
+        if (true === $this->config('store_in_cookie')) {
+            // generate token and store in DB.
+            // loop to prevent duplicates (you never know)
+            $loops  = 0;
+            $token  = null;
+            $unique = false;
+            $user   = $this->getUser();
+            $expire = time() + (int)$this->config('cookie_lifetime');
+            while ($loops < 10 && false === $unique) {
+                $token = Str::random(64);
+                try {
+                    // store token in DB
+                    DB::table('2fa_tokens')->insert(
+                        [
+                            'user_id'    => $user->id,
+                            'expires_at' => date('Y-m-d H:i:s', $expire),
+                            'token'      => $token,
+                        ]
+                    );
+                } catch (QueryException $e) {
+                    // token exists or DB error. Try again.
+                    $loops++;
+                    continue;
+                }
+                // break loop.
+                $loops  = 20;
+                $unique = true;
+            }
+            if (null !== $token) {
+                $this->sessionPut(Constants::SESSION_TOKEN, $token);
+            }
+        }
     }
 }
