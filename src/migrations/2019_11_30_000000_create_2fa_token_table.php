@@ -7,7 +7,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class Google2FALaravel_CreateTokenTable
+ * Class Create2FaTokenTable
+ * @codeCoverageIgnore
  */
 class Create2FaTokenTable extends Migration
 {
