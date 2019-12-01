@@ -40,6 +40,8 @@ class Middleware
             return $response;
         }
 
+        $authenticator->cleanupTokens();
+
         return $authenticator->makeRequestOneTimePasswordResponse();
     }
 }

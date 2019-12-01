@@ -67,6 +67,14 @@ class Authenticator extends Google2FA
     }
 
     /**
+     * Removes expired tokens from the database.
+     */
+    public function cleanupTokens(): void
+    {
+        DB::table('2fa_tokens')->where('expires_at', '<=', date('Y-m-d H:i:s'))->delete();
+    }
+
+    /**
      * Fire login (success or failed).
      *
      * @param $succeeded
