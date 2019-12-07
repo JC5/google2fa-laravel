@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PragmaRX\Google2FALaravel\Support;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request as IlluminateRequest;
 use Illuminate\Support\Facades\DB;
 use PragmaRX\Google2FALaravel\Events\EmptyOneTimePasswordReceived;
@@ -142,10 +143,14 @@ class Authenticator extends Google2FA
         $time  = date('Y-m-d H:i:s');
 
         // check DB for token.
-        $count = DB::table('2fa_tokens')
-                   ->where('token', $token)
-                   ->where('expires_at', '>', $time)
-                   ->where('user_id', $this->getUser()->id)->count();
+        try {
+            $count = DB::table('2fa_tokens')
+                       ->where('token', $token)
+                       ->where('expires_at', '>', $time)
+                       ->where('user_id', $this->getUser()->id)->count();
+        } catch (QueryException $e) {
+            $count = 0;
+        }
 
         return 1 === $count;
     }
