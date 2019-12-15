@@ -73,8 +73,11 @@ class Authenticator extends Google2FA
     public function cleanupTokens(): void
     {
         if (true === config('google2fa.store_in_cookie')) {
-            // TODO add try/catch
-            DB::table('2fa_tokens')->where('expires_at', '<=', date('Y-m-d H:i:s'))->delete();
+            try {
+                DB::table('2fa_tokens')->where('expires_at', '<=', date('Y-m-d H:i:s'))->delete();
+            } catch (QueryException $e) {
+                // do nothing.
+            }
         }
     }
 
