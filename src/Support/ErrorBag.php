@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PragmaRX\Google2FALaravel\Support;
 
+use Exception;
 use Illuminate\Support\MessageBag;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
@@ -19,11 +20,24 @@ trait ErrorBag
      *
      * @return MessageBag
      */
-    protected function createErrorBagForMessage($message)
+    protected function createErrorBagForMessage($message): MessageBag
     {
-        return new MessageBag([
-            'message' => $message,
-        ]);
+        if (is_object($message)) {
+            try {
+                $message = (string)$message;
+            } catch (Exception $e) {
+                $message = (string)$e->getMessage();
+            }
+        }
+        if (is_array($message)) {
+            $message = (string)$message;
+        }
+
+        return new MessageBag(
+            [
+                'message' => $message,
+            ]
+        );
     }
 
     /**
