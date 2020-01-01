@@ -4,20 +4,24 @@ declare(strict_types=1);
 namespace PragmaRX\Google2FALaravel;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
+use PragmaRX\Google2FALaravel\Providers\EventServiceProvider;
 
 /**
  * Class ServiceProvider
  */
 class ServiceProvider extends IlluminateServiceProvider
 {
+
     /**
      * Configure package paths.
      */
     private function configurePaths()
     {
-        $this->publishes([
-            __DIR__.'/config/config.php' => config_path('google2fa.php'),
-        ]);
+        $this->publishes(
+            [
+                __DIR__ . '/config/config.php' => config_path('google2fa.php'),
+            ]
+        );
     }
 
     /**
@@ -26,7 +30,7 @@ class ServiceProvider extends IlluminateServiceProvider
     private function mergeConfig()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/config/config.php', 'google2fa'
+            __DIR__ . '/config/config.php', 'google2fa'
         );
     }
 
@@ -35,11 +39,15 @@ class ServiceProvider extends IlluminateServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton('pragmarx.google2fa', function ($app) {
+        $this->app->register(EventServiceProvider::class);
+        $this->app->singleton(
+            'pragmarx.google2fa', static function ($app) {
+
             return $app->make(Google2FA::class);
-        });
+        }
+        );
     }
 
     /**
