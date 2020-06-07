@@ -41,5 +41,5 @@ trait Auth
         return $this->getAuth()->user();
     }
 
-    abstract public function config($string, $children = []);
+    abstract protected function config($string, $children = []);
 }
