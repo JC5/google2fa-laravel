@@ -28,12 +28,14 @@ class DeleteDBToken
         $token      = request()->cookies->get($cookieName);
 
         // check DB for token.
-        try {
-            DB::table('2fa_tokens')
-                       ->where('token', $token)
-                       ->where('user_id', $event->user->id)->delete();
-        } catch (QueryException $e) {
-            Log::error('Could not delete user token from database.');
+        if (null !== $event->user) {
+            try {
+                DB::table('2fa_tokens')
+                  ->where('token', $token)
+                  ->where('user_id', $event->user->id)->delete();
+            } catch (QueryException $e) {
+                Log::error('Could not delete user token from database.');
+            }
         }
     }
 
