@@ -30,6 +30,8 @@ return [
      */
     'cookie_lifetime' => (int)env('OTP_COOKIE_LIFETIME', 8035200),
 
+    'guard' => '',
+
     /*
      * Name of the cookie.
      */

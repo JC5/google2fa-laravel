@@ -86,6 +86,8 @@ class Google2FA extends Google2FAService
     {
         $this->setRequest($request);
 
+        $this->setWindow($this->config('window'));
+
         return $this;
     }
 
@@ -268,7 +270,7 @@ class Google2FA extends Google2FAService
         return $this->verifyKey(
                 $secret,
                 $one_time_password,
-                $this->config('window'),
+                $this->getWindow(),
                 null, // $timestamp
                 $this->getOldTimestamp() ?: null
         );
