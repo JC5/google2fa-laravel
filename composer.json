@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=8",
         "laravel/framework": ">=5.4.36",
         "pragmarx/google2fa-qrcode": "^1.0"
     },
