@@ -43,9 +43,13 @@ return [
     'auth' => 'auth',
 
     /*
+     * Guard.
+     */
+    'guard' => '',
+
+    /*
      * 2FA verified session var.
      */
-
     'session_var' => 'google2fa',
 
     /*

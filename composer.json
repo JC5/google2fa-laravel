@@ -2,7 +2,7 @@
     "name": "jc5/google2fa-laravel",
     "description": "A One Time Password Authentication package, compatible with Google Authenticator.",
     "keywords": ["authentication", "two factor authentication", "google2fa", "laravel"],
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "authors": [
         {
             "name": "Antonio Carlos Ribeiro",
@@ -49,5 +49,7 @@
     "suggest": {
       "bacon/bacon-qr-code": "Required to generate inline QR Codes.",
       "pragmarx/recovery": "Generate recovery codes."
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
