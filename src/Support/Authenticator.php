@@ -18,8 +18,10 @@ use PragmaRX\Google2FALaravel\Google2FA;
  */
 class Authenticator extends Google2FA
 {
-    use ErrorBag, Input, Response, Session;
-
+    use ErrorBag;
+    use Input;
+    use Response;
+    use Session;
     /**
      * The current password.
      *
@@ -192,6 +194,8 @@ class Authenticator extends Google2FA
 
             return Constants::OTP_VALID;
         }
+        $this->fireLoginEvent($isValid);
+
         $this->fireLoginEvent($isValid);
 
         return Constants::OTP_INVALID;
