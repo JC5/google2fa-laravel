@@ -119,7 +119,8 @@ class Google2FaLaravelTest extends TestCase
 
     public function testCanInstantiate()
     {
-        $this->assertEquals(16, strlen(Google2FA::generateSecretKey()));
+        // google2fa v8 generates 16 character secrets by default, v9 generates 32
+        $this->assertContains(strlen(Google2FA::generateSecretKey()), [16, 32]);
     }
 
     public function testIsActivated()
@@ -251,8 +252,9 @@ class Google2FaLaravelTest extends TestCase
     {
         $qrCode = Google2FA::getQRCodeInline('company name', 'email@company.com', Constants::SECRET);
 
-        $this->assertStringStartsWith(
-            '<?xml version="1.0"',
+        // google2fa-qrcode v3 returns raw SVG XML, v4 returns a base64 data URI
+        $this->assertMatchesRegularExpression(
+            '/^(<\?xml version="1\.0"|data:image\/svg\+xml;base64,)/',
             $qrCode
         );
 
