@@ -25,18 +25,21 @@ class Middleware
         $cookieResult  = $authenticator->hasValidCookieToken();
         $authResult    = $authenticator->isAuthenticated();
 
-        /** @var Response $response */
-        $response = $next($request);
-
         if (false === $cookieResult && true === $authResult) {
             $cookieName = config('google2fa.cookie_name') ?? 'google2fa_token';
             $lifetime   = (int)(config('google2fa.cookie_lifetime') ?? 8035200);
             $lifetime   = $lifetime > 8035200 ? 8035200 : $lifetime;
             $token      = $authenticator->sessionGet(Constants::SESSION_TOKEN);
+
+            /** @var Response $response */
+            $response = $next($request);
             $response->withCookie(cookie()->make($cookieName, $token, $lifetime / 60));
+            return $response;
         }
 
         if (true === $cookieResult || true === $authResult) {
+            /** @var Response $response */
+            $response = $next($request);
             return $response;
         }
 
