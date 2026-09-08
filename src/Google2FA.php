@@ -75,7 +75,7 @@ class Google2FA extends Google2FAService
     {
         $this->boot($request);
 
-        parent::__construct($this->getImageBackend());
+        parent::__construct(null, $this->getImageBackend());
     }
 
     /**
