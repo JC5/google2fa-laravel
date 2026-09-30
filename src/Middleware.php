@@ -23,8 +23,6 @@ class Middleware
         $authenticator = app(Authenticator::class)->boot($request);
         $cookieResult  = $authenticator->hasValidCookieToken();
         $authResult    = $authenticator->isAuthenticated();
-        $cookieResult = false;
-        $authResult = true;
 
         if (false === $cookieResult && true === $authResult) {
             $cookieName = config('google2fa.cookie_name') ?? 'google2fa_token';
